@@ -2,10 +2,9 @@
 	<div class="ch-list-container ch-chat-container">
 		<ng-container *ngIf="messages$ | async as messages">
 			<cdk-virtual-scroll-viewport
-				autoSize
+				autosize
 				[id]="viewportId"
 				class="ch-vscroll-viewport"
-				itemSize="auto"
 				(scroll)="onScroll(messages[0])"
 			>
 				<div

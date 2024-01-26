@@ -1,3 +1,4 @@
+import { ScrollingModule as ExperimentalScrollingModule } from '@angular/cdk-experimental/scrolling';
 import {
 	CdkVirtualScrollViewport,
 	ScrollDispatcher,
@@ -38,7 +39,12 @@ import { AuthUser } from 'chit-chat/src/lib/users';
 	selector: 'ch-chat',
 	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [CommonModule, IonicModule, ScrollingModule],
+	imports: [
+		CommonModule,
+		IonicModule,
+		ScrollingModule,
+		ExperimentalScrollingModule,
+	],
 	templateUrl: './chat.component.html',
 	styleUrls: ['./chat.component.scss'],
 	host: {
@@ -51,7 +57,7 @@ export class ChatComponent implements OnInit, OnChanges, OnDestroy {
 	viewport?: CdkVirtualScrollViewport;
 
 	@Input()
-	scrollTreshold: number = 3000;
+	scrollTreshold: number = 4000;
 
 	@Input()
 	initialBatchSize: number = 40;
@@ -241,7 +247,7 @@ export class ChatComponent implements OnInit, OnChanges, OnDestroy {
 	calculateDynamicThreshold(scrollSpeed: number): number {
 		// console.log(scrollSpeed);
 		const baseThreshold = this.scrollTreshold;
-		const speedMultiplier = 5;
+		const speedMultiplier = 15;
 		// Weight for the weighted average
 		const weight = 0.1; // Adjust based on testing
 
